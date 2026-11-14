@@ -1,0 +1,29 @@
+# Netlify settings for Hotel Shree Shivay.
+# Netlify runs the build, which copies ./site to ./dist and fills in the
+# site URL (your custom domain once it is added) in SEO/link-preview tags.
+[build]
+  command = "node scripts/build.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Photos, videos, icons: cache for 7 days (file names are not hashed,
+# so a long "immutable" cache would hide replaced photos).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"

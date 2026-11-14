@@ -1,0 +1,12 @@
+# Build output (Netlify builds it)
+dist/
+
+# Private documents: never publish the property registry
+*.pdf
+
+# Test / tool output
+.playwright-mcp/
+tools/media-manifest.json
+tools/alts.json
+node_modules/
+.DS_Store
